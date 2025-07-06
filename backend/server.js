@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser())
 app.use(cors({
-  origin:'http://localhost:5173',
+  origin:'https://gym-management-system-frontend.onrender.com',
   credentials:true
 }))
 

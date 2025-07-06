@@ -22,7 +22,6 @@ import RenewPage from "./pages/RenewPage";
 import MemberDetails from "./pages/MemberDetails";
 import DeleteMember from "./pages/DeleteMember";
 import EditMember from "./pages/EditMember";
-import AdminProfile from "./pages/AdminProfile";
 
 const App = () => {
   const {id} = useParams();
@@ -71,12 +70,12 @@ const App = () => {
               User ? <MonthlyJoined /> : <Navigate to="/login" replace />
             }
           />
-          <Route
+          {/* <Route
             path="/profile"
             element={
               User ? <AdminProfile /> : <Navigate to="/login" replace />
             }
-          />
+          /> */}
           <Route
             path="/edit-member/:editid"
             element={

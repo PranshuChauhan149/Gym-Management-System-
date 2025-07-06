@@ -24,12 +24,13 @@ import DeleteMember from "./pages/DeleteMember";
 import EditMember from "./pages/EditMember";
 
 const App = () => {
-  const {id} = useParams();
+  
   const { User, server_Url, getCurrentUser,Allmember,member } = useMyContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     getCurrentUser();
+    Allmember();
    
   }, []);  
   useEffect(() => {

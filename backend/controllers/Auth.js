@@ -71,7 +71,7 @@ export const Login = async (req, res) => {
       secure: true,       // ✅ Must be true on HTTPS
     });
 
-    return res.json({ success: true, message: user });
+    return res.json({ success: true,user });
 
   } catch (error) {
     return res.json({ success: false, message: error.message });

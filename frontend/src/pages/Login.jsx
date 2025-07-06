@@ -25,13 +25,13 @@ const Login = () => {
       withCredentials:true
     })
     if(result.data.success){
-      console.log(result.data)
+     
       setUser(result.data.message);
       getCurrentUser();
       Allmember();
 
       toast.success("Login successfully")
-      console.log(User)
+      
     }
     else{
       toast.error(result.data.message)

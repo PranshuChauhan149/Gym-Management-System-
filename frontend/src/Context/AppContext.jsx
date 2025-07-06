@@ -9,7 +9,7 @@ const AppContext = createContext();
 export const MyProvider = ({ children }) => {
   const [User, setUser] = useState(null);
   const [member, setMember] = useState(null);
-  const server_Url = 'http://localhost:4000';  // 🔗 Your backend URL
+  const server_Url = 'https://gym-management-system-backend-jdxv.onrender.com';  // 🔗 Your backend URL
 
   // ✅ Fetch Current Logged-in User
   const getCurrentUser = async () => {

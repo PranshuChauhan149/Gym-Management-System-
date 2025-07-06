@@ -30,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     getCurrentUser();
-    Allmember();
+   
   }, []);  
   useEffect(() => {
     if (!User) {

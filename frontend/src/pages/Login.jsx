@@ -5,7 +5,7 @@ import { useMyContext } from '../Context/AppContext';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-  const {server_Url,setUser,User}  = useMyContext();
+  const {server_Url,setUser,User,getCurrentUser,Allmember}  = useMyContext();
     const navgaite = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -27,6 +27,9 @@ const Login = () => {
     if(result.data.success){
       console.log(result.data)
       setUser(result.data.message);
+      getCurrentUser();
+      Allmember();
+
       toast.success("Login successfully")
       console.log(User)
     }

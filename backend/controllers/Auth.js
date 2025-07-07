@@ -8,36 +8,40 @@ export const SignUp = async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-      return res.json({ success: false, message: "All fields are required" });
+      return res.status(400).json({ success: false, message: "All fields are required" });
     }
 
-    const findWithEmail = await admin.findOne({ email });
-    if (findWithEmail) {
-      return res.json({ success: false, message: "Email already exists" });
+    const existingUser = await admin.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, message: "Email already exists" });
     }
 
-    const hashPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await admin.create({
       username,
       email,
-      password: hashPassword,
+      password: hashedPassword,
     });
 
-    const token = await genToken(user._id);
+    const token = genToken(user._id);
 
-    // ✅ Deployment-ready Cookie Settings
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,  // 7 days
-      sameSite: "None",                 // ✅ For cross-site cookies
-      secure: true,                     // ✅ Must be true for HTTPS
+      sameSite: "None",
+      secure: true
     });
 
-    return res.json({ success: true, message: "Account created successfully" });
+    return res.status(201).json({
+      success: true,
+      message: "Account created successfully",
+      user: { _id: user._id, username: user.username, email: user.email }
+    });
 
   } catch (err) {
-    return res.json({ success: false, message: err.message });
+    console.error(err);
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -47,34 +51,37 @@ export const Login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.json({ success: false, message: "All fields are required" });
+      return res.status(400).json({ success: false, message: "All fields are required" });
     }
 
     const user = await admin.findOne({ email });
-
     if (!user) {
-      return res.json({ success: false, message: "Email incorrect" });
+      return res.status(401).json({ success: false, message: "Invalid email or password" });
     }
 
-    const checkPassword = await bcrypt.compare(password, user.password);
-
-    if (!checkPassword) {
-      return res.json({ success: false, message: "Password incorrect" });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "Invalid email or password" });
     }
 
-    const token = await genToken(user._id);
+    const token = genToken(user._id);
 
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: "None",   // ✅ Must be 'None' for cross-domain
-      secure: true,       // ✅ Must be true on HTTPS
+      sameSite: "None",
+      secure: true
     });
 
-    return res.json({ success: true,user });
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
+      user: { _id: user._id, username: user.username, email: user.email }
+    });
 
   } catch (error) {
-    return res.json({ success: false, message: error.message });
+    console.error(error);
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -82,13 +89,15 @@ export const Login = async (req, res) => {
 export const Logout = async (req, res) => {
   try {
     res.clearCookie("token", {
-      sameSite: "None",  // ✅ Make sure to clear the correct cookie
-      secure: true,      // ✅ Must match the cookie's original options
+      httpOnly: true,
+      sameSite: "None",
+      secure: true
     });
 
-    return res.json({ success: true, message: "Logout successfully" });
+    return res.status(200).json({ success: true, message: "Logout successful" });
 
   } catch (error) {
-    return res.json({ success: false, message: "Logout error" });
+    console.error(error);
+    return res.status(500).json({ success: false, message: "Logout error" });
   }
 };

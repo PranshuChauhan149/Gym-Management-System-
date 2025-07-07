@@ -9,7 +9,7 @@ currentUserRoute.get("/current",getCurrentuser,currentUser);
 currentUserRoute.get("/all-members",getCurrentuser,AllMember);
 currentUserRoute.put("/renew/:id", getCurrentuser, renew);
 currentUserRoute.put("/update-member/:editid", getCurrentuser, editmember);
-currentUserRoute.delete("/delete/:id", deleteMember);
+currentUserRoute.delete("/delete/:id", getCurrentuser, deleteMember);
 
 
 export default currentUserRoute;

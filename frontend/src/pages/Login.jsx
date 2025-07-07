@@ -29,6 +29,7 @@ const Login = () => {
       setUser(result.data.message);
       getCurrentUser();
       Allmember();
+      
 
       toast.success("Login successfully")
       

@@ -34,7 +34,7 @@ app.use(cors({
 app.options('*', cors()); // handle preflight requests
 
 app.get("/", (req, res) => {
-  res.send("hello");
+  res.send("hello world");
 });
 
 app.use("/api/admin", AdminRouter);

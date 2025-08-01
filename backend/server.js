@@ -19,7 +19,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin:"http://localhost:5173",
+  origin:"https://gym-management-system-bb.onrender.com",
   credentials:true
 }));
 

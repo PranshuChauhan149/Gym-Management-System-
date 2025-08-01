@@ -26,10 +26,16 @@ const App = () => {
   const { User, getCurrentUser, Allmember } = useMyContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getCurrentUser();
-    Allmember();
-  }, []);
+useEffect(() => {
+  const fetchData = async () => {
+    const user = await getCurrentUser();  // wait + return user
+    if (user) {
+      Allmember();
+    }
+  };
+
+  fetchData();
+}, []);
 
   return (
     <div

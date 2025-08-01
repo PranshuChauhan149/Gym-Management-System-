@@ -18,30 +18,33 @@ const Login = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit =async (e) => {
-   try{
-     e.preventDefault();
-    const result = await axios.post(`${server_Url}/api/admin/login`,formData,{
-      withCredentials:true
-    })
-    if(result.data.success){
-     
-      setUser(result.data.message);
-      getCurrentUser();
-      Allmember();
-      
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-      toast.success("Login successfully")
-      
+  try {
+    const result = await axios.post(`${server_Url}/api/admin/login`, formData, {
+      withCredentials: true,
+    });
+
+    if (result.data.success) {
+      // Wait for user to be fetched and set
+      const user = await getCurrentUser();
+
+      if (user) {
+        Allmember(); // Only call if user exists
+        toast.success("Login successful");
+        navgaite("/"); // ✅ Navigate after login
+      } else {
+        toast.error("User fetch failed after login");
+      }
+    } else {
+      toast.error(result.data.message);
     }
-    else{
-      toast.error(result.data.message)
-    }
-   }
-   catch(error){
-    toast.error(error.message)
-   }
-  };
+  } catch (error) {
+    toast.error(error.message || "Login failed");
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 to-yellow-200 py-10">

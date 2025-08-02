@@ -67,3 +67,4 @@ export const MyProvider = ({ children }) => {
 // ✅ Step 3: Custom Hook
 export const useMyContext = () => useContext(AppContext);
 
+

@@ -6,8 +6,10 @@ import GymGrowth from '../components/GymGrowth'
 import Advertisement from '../components/Advertisement'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
-
+import { useMyContext } from '../Context/AppContext'
 const Home = () => {
+  const {  Allmember } = useMyContext();
+  Allmember();
   return (
     <div>
        <Navbar />
@@ -23,5 +25,6 @@ const Home = () => {
     </div>
   )
 }
+
 
 export default Home

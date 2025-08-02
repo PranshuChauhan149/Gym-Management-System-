@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 const JoinedMembers = () => {
   const navgaite = useNavigate();
-  const { member } = useMyContext();
+  const { member,Allmember } = useMyContext();
+  Allmember();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 pb-12">
@@ -63,3 +64,4 @@ const JoinedMembers = () => {
 };
 
 export default JoinedMembers;
+

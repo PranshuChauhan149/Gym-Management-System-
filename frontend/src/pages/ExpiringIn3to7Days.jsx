@@ -5,7 +5,8 @@ import { useMyContext } from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const ExpiringIn4To7Days = () => {
-  const { member } = useMyContext();
+  const { member,Allmember } = useMyContext();
+  Allmember();
   const navgaite = useNavigate();
 
   const today = new Date();
@@ -79,3 +80,4 @@ const ExpiringIn4To7Days = () => {
 };
 
 export default ExpiringIn4To7Days;
+

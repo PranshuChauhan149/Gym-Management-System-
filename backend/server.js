@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 // ✅ Multiple Origins Allowed
 const allowedOrigins = [
-  'http://localhost:5173'
+  'https://gym-management-system-3weuz8m70.vercel.app'
 ];
 
 app.use(cors({
@@ -36,3 +36,4 @@ app.listen(PORT, () => {
   connectDb();
   console.log("Server is running on this PORT " + PORT);
 });
+

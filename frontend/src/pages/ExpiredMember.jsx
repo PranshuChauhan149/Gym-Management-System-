@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const ExpiredMember = () => {
   const navigate = useNavigate();
   const { member, server_Url, getCurrentUser ,Allmember} = useMyContext();
+  Allmember();
   const today = new Date();
 
   const expiredMembers =
@@ -119,3 +120,4 @@ const ExpiredMember = () => {
 };
 
 export default ExpiredMember;
+

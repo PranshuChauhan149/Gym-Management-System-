@@ -10,7 +10,7 @@ export const MyProvider = ({ children }) => {
   const [User, setUser] = useState(null);
   const [member, setMember] = useState([]);
   
-  const server_Url = 'https://gym-management-system-frontends.onrender.com';  // 🌐 Backend URL
+  const server_Url = 'https://gym-management-system-backend-4g1f.onrender.com';  // 🌐 Backend URL
 
   // ✅ Fetch Current Logged-in User
   const getCurrentUser = async () => {
@@ -66,3 +66,4 @@ export const MyProvider = ({ children }) => {
 
 // ✅ Step 3: Custom Hook
 export const useMyContext = () => useContext(AppContext);
+

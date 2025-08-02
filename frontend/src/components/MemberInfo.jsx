@@ -3,7 +3,8 @@ import { FaPerson, FaMoneyBillWave, FaUserCheck } from "react-icons/fa6";
 import { useMyContext } from '../Context/AppContext';
 
 const MemberInfo = () => {
-  const { member } = useMyContext();
+  const { member ,Allmember} = useMyContext();
+  Allmember();
 
   const totalMembers = member?.length || 0;
 
@@ -52,3 +53,4 @@ const MemberInfo = () => {
 };
 
 export default MemberInfo;
+

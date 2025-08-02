@@ -9,6 +9,7 @@ const MemberDetails = () => {
   const { memberid } = useParams();
   const { member, getCurrentUser, server_Url,Allmember } = useMyContext();
   const navigate = useNavigate();
+  Allmember()
 
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this member?')) {
@@ -113,3 +114,4 @@ const MemberDetails = () => {
 };
 
 export default MemberDetails;
+

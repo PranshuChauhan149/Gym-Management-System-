@@ -23,7 +23,7 @@ import DeleteMember from "./pages/DeleteMember";
 import EditMember from "./pages/EditMember";
 
 const App = () => {
-  const { User, getCurrentUser, Allmember } = useMyContext();
+  const { User, getCurrentUser,member, Allmember } = useMyContext();
   const navigate = useNavigate();
 
 useEffect(() => {
@@ -35,7 +35,7 @@ useEffect(() => {
   };
 
   fetchData();
-}, []);
+}, [member,User]);
 
   return (
     <div

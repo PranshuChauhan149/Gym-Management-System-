@@ -15,12 +15,12 @@ app.use(cookieParser());
 
 // ✅ Multiple Origins Allowed
 const allowedOrigins = [
-  'https://gym-management-system-ep6yhs5wg.vercel.app'
+  'https://gym-management-system-nine-livid.vercel.app'
 ];
 
 app.use(cors({
   
-  origin:"https://gym-management-system-ep6yhs5wg.vercel.app",
+  origin:"https://gym-management-system-nine-livid.vercel.app",
   credentials:true
 }));
 
@@ -37,6 +37,7 @@ app.listen(PORT, () => {
   connectDb();
   console.log("Server is running on this PORT " + PORT);
 });
+
 
 
 

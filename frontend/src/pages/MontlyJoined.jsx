@@ -35,11 +35,18 @@ const MonthlyJoined = () => {
               className="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center hover:scale-105 hover:shadow-2xl transition duration-300"  onClick={()=>navgaite(`/detail/${member._id}`)}
             >
               <div className="relative mb-4">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md"
-                />
+               {member.image ? (
+  <img
+    src={member.image}
+    alt={member.name}
+    className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md"
+  />
+) : (
+  <div className="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 border-4 border-white shadow-md">
+    No Image
+  </div>
+)}
+
                 <FaCircle className="absolute bottom-2 right-2 text-green-500 text-xs border-2 border-white rounded-full" />
               </div>
 

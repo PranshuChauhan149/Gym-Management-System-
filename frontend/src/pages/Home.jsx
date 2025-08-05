@@ -6,8 +6,15 @@ import GymGrowth from '../components/GymGrowth'
 import Advertisement from '../components/Advertisement'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import { useMyContext } from '../Context/AppContext'
+import { useEffect } from 'react'
 
 const Home = () => {
+
+  const {  Allmember } = useMyContext();
+  useEffect(()=>{
+    Allmember();
+  },[])
   return (
     <div>
        <Navbar />

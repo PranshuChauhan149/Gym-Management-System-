@@ -13,7 +13,7 @@ const DeleteMember = () => {
 
   if (window.confirm("Are you sure you want to delete this member?")) {
     try {
-      const res = await axios.delete(`${server_Url}/api/admin/delete/${id}`);
+      const res = await axios.delete(`${server_Url}/api/admin/delete/${id}`,{withCredentials:true});
       console.log(res);
 
       if (res.data.success) {

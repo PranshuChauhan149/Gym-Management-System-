@@ -58,7 +58,7 @@ const Navbar = () => {
       <div className="flex items-center gap-5 lg:gap-8 relative ">
         <IoNotificationsOutline className="text-2xl text-gray-800 cursor-pointer hover:scale-110 transition-transform  bg-white rounded-full  p-2 w-10 h-10 shadow-lg shadow-black"  onClick={()=>navigate("/expired-members")}/>
        {
-      expiredMembers.length !==0 ? <div className="w-2.5 h-2.5 rounded-full bg-red-600 absolute right-15 bottom-0"></div> : ""
+      expiredMembers.length !==0 ? <div className="w-2.5 h-2.5 rounded-full bg-red-600 absolute right-15 lg:right-18 bottom-0"></div> : ""
       }
 
         <div

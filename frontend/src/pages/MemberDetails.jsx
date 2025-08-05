@@ -21,7 +21,7 @@ const MemberDetails = () => {
 
           toast.success('Member deleted successfully');
           Allmember();
-          getCurrentUser();
+        
           navigate('/joined-members');  // ✅ Optional: Redirect after delete
         } else {
           toast.error(res.data.message || 'Failed to delete member');
@@ -83,8 +83,8 @@ const MemberDetails = () => {
             <div><span className="font-semibold">Payment Mode:</span> {m.membership?.paymentMode || 'N/A'}</div>
             <div>
               <span className="font-semibold">Status:</span>{' '}
-              <span className={m.membership?.isActive ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'}>
-                {m.membership?.isActive ? 'Active' : 'Inactive'}
+              <span className= 'text-green-600 font-semibold'>
+                Active
               </span>
             </div>
           </div>

@@ -1,25 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaCamera } from 'react-icons/fa';
-import DetailNavbar from '../components/DetailNavbar';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useMyContext } from '../Context/AppContext';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { FaCamera } from "react-icons/fa";
+import DetailNavbar from "../components/DetailNavbar";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useMyContext } from "../Context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const AddMember = () => {
-  const { server_Url ,Allmember} = useMyContext();
+  const { server_Url, Allmember } = useMyContext();
   const navigate = useNavigate();
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
 
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    plan: '1 Month',
+    name: "",
+    phone: "",
+    address: "",
+    plan: "1 Month",
     startDate: today,
-    endDate: '',
-    paidAmount: '',
-    paymentMode: 'cash',
+    endDate: "",
+    paidAmount: "",
+    paymentMode: "cash",
     image: null,
   });
 
@@ -28,15 +28,15 @@ const AddMember = () => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
-    if (name === 'image') {
+    if (name === "image") {
       const file = files[0];
-      if (file && file.type.startsWith('image/')) {
-        setFormData(prev => ({ ...prev, image: file }));
+      if (file && file.type.startsWith("image/")) {
+        setFormData((prev) => ({ ...prev, image: file }));
       } else {
-        toast.error('Please select a valid image file');
+        toast.error("Please select a valid image file");
       }
     } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -46,54 +46,53 @@ const AddMember = () => {
 
   const calculateEndDate = (startDate, plan) => {
     const months = parseInt(plan);
-    if (!months || !startDate) return '';
+    if (!months || !startDate) return "";
 
     const date = new Date(startDate);
     date.setMonth(date.getMonth() + months);
-    return date.toISOString().split('T')[0];
+    return date.toISOString().split("T")[0];
   };
 
   // Update end date when plan or start date changes
   useEffect(() => {
     const newEndDate = calculateEndDate(formData.startDate, formData.plan);
-    setFormData(prev => ({ ...prev, endDate: newEndDate }));
+    setFormData((prev) => ({ ...prev, endDate: newEndDate }));
   }, [formData.plan, formData.startDate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = new FormData();
-    Object.keys(formData).forEach(key => {
+    Object.keys(formData).forEach((key) => {
       if (formData[key]) data.append(key, formData[key]);
     });
 
     try {
       const res = await axios.post(`${server_Url}/api/admin/new/member`, data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       });
 
       if (res.data.success) {
-        toast.success('Member Added Successfully!');
+        toast.success("Member Added Successfully!");
         setFormData({
-          name: '',
-          phone: '',
-          address: '',
-          plan: '1 Month',
+          name: "",
+          phone: "",
+          address: "",
+          plan: "1 Month",
           startDate: today,
-          endDate: '',
-          paidAmount: '',
-          paymentMode: 'cash',
+          endDate: "",
+          paidAmount: "",
+          paymentMode: "cash",
           image: null,
         });
-        
-        navigate("/monthly-Joined")
-        Allmember()
+
+        navigate("/monthly-Joined");
+        Allmember();
       } else {
-        toast.error(res.data.message || 'Failed to add member');
+        toast.error(res.data.message || "Failed to add member");
       }
     } catch (error) {
-      toast.error('Failed to add member');
+      toast.error("Failed to add member");
       console.error(error);
     }
   };
@@ -102,10 +101,11 @@ const AddMember = () => {
     <div>
       <DetailNavbar />
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 mt-10 mb-10">
-        <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">Add New Gym Member</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">
+          Add New Gym Member
+        </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-
           {/* Image Upload */}
           <div className="flex flex-col items-center gap-4 relative">
             <div
@@ -228,7 +228,9 @@ const AddMember = () => {
           {/* Dates */}
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="w-full">
-              <label className="text-sm text-gray-600">Membership Start Date</label>
+              <label className="text-sm text-gray-600">
+                Membership Start Date
+              </label>
               <input
                 type="date"
                 name="startDate"
@@ -239,7 +241,9 @@ const AddMember = () => {
             </div>
 
             <div className="w-full">
-              <label className="text-sm text-gray-600">Membership End Date</label>
+              <label className="text-sm text-gray-600">
+                Membership End Date
+              </label>
               <input
                 type="date"
                 name="endDate"

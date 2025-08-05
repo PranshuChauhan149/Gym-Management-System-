@@ -20,7 +20,7 @@ export const MyProvider = ({ children }) => {
       });
 
       if (res.data.success) {
-        console.log("✅ Current User:", res.data.user);
+       
         setUser(res.data.user);
       } else {
         toast.error(res.data.message || "User not logged in");
@@ -40,7 +40,7 @@ export const MyProvider = ({ children }) => {
         withCredentials: true,
       });
 
-      console.log("✅ All Members:", res.data.members);
+      
       setMember(res.data.members || []);
     } catch (error) {
       console.error("❌ Error fetching members:", error);

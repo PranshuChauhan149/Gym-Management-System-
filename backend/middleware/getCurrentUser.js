@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
  const getCurrentuser = async (req,res,next) =>{
  try{
-   const token = req.cookies?.token;
+   const token = req?.cookies?.token;
   if(!token){
     return res.json({success:false,message:"User Not Login"})
   }

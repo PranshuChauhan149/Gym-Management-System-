@@ -22,13 +22,13 @@ const ExpiredMember = () => {
 
     if (window.confirm("Are you sure you want to delete this member?")) {
       try {
-        const res = await axios.delete(`${server_Url}/api/admin/delete/${id}`);
+        const res = await axios.delete(`${server_Url}/api/admin/delete/${id}`,{withCredentials:true});
         console.log(res);
 
         if (res.data.success) {
           toast.success("Member deleted successfully");
           Allmember();
-          getCurrentUser();
+    
         } else {
           toast.error(res.data.message || "Failed to delete member");
         }
@@ -62,11 +62,18 @@ const ExpiredMember = () => {
                 className="relative mb-4"
                 onClick={() => navigate(`/detail/${member._id}`)}
               >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-md"
-                />
+              {member.image ? (
+  <img
+    src={member.image}
+    alt={member.name}
+    className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-xl"
+  />
+) : (
+  <div className="w-36 h-36 flex items-center justify-center rounded-full bg-gray-200 text-gray-600 border-4 border-white shadow-xl text-sm font-semibold">
+    No Image
+  </div>
+)}
+
                 <FaTimesCircle className="absolute bottom-2 right-2 text-red-500 text-lg border-2 border-white rounded-full" />
               </div>
 

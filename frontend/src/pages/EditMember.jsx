@@ -83,11 +83,18 @@ const m = member.find(item => item._id?.toString() === editid);
       <DetailNavbar />
       <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-8 mt-10 mb-10 flex flex-col lg:flex-row gap-8">
         <div className="w-full lg:w-1/3 flex justify-center items-center">
-          <img
-            src={m.image || 'https://via.placeholder.com/300x300.png?text=No+Image'}
-            alt="Member"
-            className="rounded-2xl object-cover w-72 h-72 shadow-md"
-          />
+          {m.image ? (
+  <img
+    src={m.image}
+    alt={m.name}
+    className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-xl"
+  />
+) : (
+  <div className="w-70 h-70 flex items-center justify-center  bg-gray-200 text-gray-600 border-4 border-white shadow-xl text-sm font-semibold">
+    No Image
+  </div>
+)}
+
         </div>
 
         <div className="w-full lg:w-2/3">

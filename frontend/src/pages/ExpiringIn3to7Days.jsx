@@ -45,11 +45,18 @@ const ExpiringIn4To7Days = () => {
               className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center hover:scale-105 hover:shadow-2xl transition duration-300 border-2 border-yellow-200" onClick={()=>navgaite(`/detail/${member._id}`)}
             >
               <div className="relative mb-4">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-md"
-                />
+              {member.image ? (
+  <img
+    src={member.image}
+    alt={member.name}
+    className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-xl"
+  />
+) : (
+  <div className="w-36 h-36 flex items-center justify-center rounded-full bg-gray-200 text-gray-600 border-4 border-white shadow-xl text-sm font-semibold">
+    No Image
+  </div>
+)}
+
                 <FaClock className="absolute bottom-2 right-2 text-yellow-500 text-lg border-2 border-white rounded-full" />
               </div>
 

@@ -21,15 +21,22 @@ import RenewPage from "./pages/RenewPage";
 import MemberDetails from "./pages/MemberDetails";
 import DeleteMember from "./pages/DeleteMember";
 import EditMember from "./pages/EditMember";
+import Profile from "./pages/Profile";
 
 const App = () => {
-  const { User, getCurrentUser, Allmember } = useMyContext();
+  const { User, getCurrentUser,member, Allmember } = useMyContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getCurrentUser();
-    Allmember();
-  }, []);
+  const fetchData = async () => {
+    const user = await getCurrentUser();  // wait + return user
+    if (user) {
+      Allmember();
+    }
+  };
+
+  fetchData();
+}, []);
 
   return (
     <div
@@ -56,6 +63,10 @@ const App = () => {
           <Route
             path="/"
             element={User ? <Home /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/profile"
+            element={User ? <Profile /> : <Navigate to="/login" replace />}
           />
           <Route
             path="/joined-members"

@@ -26,11 +26,18 @@ const JoinedMembers = () => {
               className="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center hover:scale-[1.03] hover:shadow-2xl transition-all duration-300" onClick={()=>navgaite(`/detail/${m._id}`)}
             >
               <div className="relative mb-4">
-                <img
-                  src={m.image || '/default-profile.png'}
-                  alt={m.name}
-                  className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-xl"
-                />
+               {m.image ? (
+  <img
+    src={m.image}
+    alt={m.name}
+    className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-xl"
+  />
+) : (
+  <div className="w-36 h-36 flex items-center justify-center rounded-full bg-gray-200 text-gray-600 border-4 border-white shadow-xl text-sm font-semibold">
+    No Image
+  </div>
+)}
+
                 <FaCircle className="absolute bottom-2 right-3 text-green-500 text-sm border-2 border-white rounded-full" />
               </div>
 

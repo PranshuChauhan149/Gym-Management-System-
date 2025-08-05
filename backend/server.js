@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 
 app.use(cors({
-  origin:"https://gym-management-system-nine-livid.vercel.app",
+  origin:"https://gym-management-system-2jubohcpq.vercel.app",
   credentials:true
 }));
 
@@ -33,3 +33,4 @@ app.listen(PORT, () => {
   connectDb();
   console.log("Server is running on this PORT " + PORT);
 });
+

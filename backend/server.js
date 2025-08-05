@@ -13,13 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Multiple Origins Allowed
-const allowedOrigins = [
-  'http://localhost:5173'
-];
+
 
 app.use(cors({
-  origin:"http://localhost:5173",
+  origin:"https://gym-management-system-nine-livid.vercel.app",
   credentials:true
 }));
 
